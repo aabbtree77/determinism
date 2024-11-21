@@ -6,7 +6,7 @@ This is a fork of the March 30 2018 commit [#96](https://github.com/google/starl
 git checkout -b tree-walker 0d5491befad9f6af126fdcb886dc58a8f059bea7
 ```
 
-It is the last commit which contains a tree-walking interpreter of [Starlark](https://github.com/google/starlark-go/blob/master/doc/spec.md). Afterwards [Alan Donovan](https://www.youtube.com/watch?v=9P_YKVhncWI) et al. moved on to a bytecode compiler.
+It is the latest commit which contains a tree-walking interpreter of [Starlark](https://github.com/google/starlark-go/blob/master/doc/spec.md). Afterwards [Alan Donovan](https://www.youtube.com/watch?v=9P_YKVhncWI) et al. moved on to a bytecode compiler-interpreter.
 
 ```
 git clone https://github.com/aabbtree77/determinism.git
@@ -31,20 +31,15 @@ go test -v
 
 **The idea here is to make the tree walker more visible for learning and exploration.**
 
-Minor code restoration: Added `go.mod`, fixed the paths for the tests not passing due to $GOPATH in a few places, took care of [#32479](https://github.com/golang/go/issues/32479), replaced "skylark" with "starlark" in code, but not in the docs as they contain links. The code may also contain links...
+Minor code restoration: Added `go.mod`, fixed the paths for the tests not passing due to $GOPATH in a few places, took care of [#32479](https://github.com/golang/go/issues/32479), replaced "skylark" with "starlark" in code, but not in the docs as they contain links.
 
 ## Remarks
 
-- 10 KLOC of Go with some beef towards immutable modules, caching, parallelism.
+- The books by [Thorsten Ball](https://thorstenball.com/books/) are great, but Starlark-Go is the next level, yet under 10 KLOC of Go.
 
-- eval_test.go gives hints about module loading with cycle detection.
+- example_test.go states a demo of the concurrent cache with cycle detection for Starlark module loading in Go. More of that in Sect. 9.7 of the book by Alan A. A. Donovan and Brian W. Kernighan [gopl.io](https://www.gopl.io/).
 
-- hashtable.go does a hash/map/dict in less than 350 lines of code.
+- hashtable.go does a hash map from scratch in less than 350 lines of Go.
 
-- The books by [Thorsten Ball](https://thorstenball.com/books/) are great, but Starlark-Go is the next level.
+- For some real uses of [Starlark-Go](https://github.com/google/starlark-go) it could be worth checking out [Clace](https://clace.io/).
 
-- The commit history reveals the edge cases emerging in a simple language with a spec.
-
-- In [Clace](https://clace.io/) Starlark-Go serves as configuration and the HTML generation. It is unclear to me if this is not yet another broken web framework or cloud service. Go might not be a good choice to do web apps, but this is another story.
-
-- The Nobel Prize in Physics 2024 goes to [Alan Donovan](https://www.youtube.com/watch?v=9P_YKVhncWI) et al...
